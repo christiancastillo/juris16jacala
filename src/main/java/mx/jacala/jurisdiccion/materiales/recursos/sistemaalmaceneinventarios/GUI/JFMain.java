@@ -73,6 +73,11 @@ public class JFMain extends javax.swing.JFrame {
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText("jMenuItem2");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("jMenuItem3");
@@ -110,6 +115,13 @@ public class JFMain extends javax.swing.JFrame {
         createFrame();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        JFrmAltaClave frmAltaClave = new JFrmAltaClave();
+        JDPMain.add(frmAltaClave);
+        frmAltaClave.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -146,9 +158,6 @@ public class JFMain extends javax.swing.JFrame {
     }
     
     public void createFrame(){
-        JPAlmacen AlmacenFrm = new JPAlmacen();
-        AlmacenFrm.setVisible(true);
-        JDPMain.add(AlmacenFrm);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
