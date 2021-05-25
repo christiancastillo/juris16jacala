@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a8e648c0-0abd-47c5-84ef-a0cf80b35602">
+	<property name="ireport.zoom" value="0.9090909090909095"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="20" uuid="6eabdeac-00d4-4f98-ab1b-a013670095c3"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[SERVICIOS DE SALUD DE HIDALGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="20" width="555" height="20" uuid="d4b9929c-f58c-47bd-873b-4e1b3703238e"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[JURISDICCIÓN SANITARIA 16 JACALA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="44" width="555" height="20" uuid="9d6f1af1-3353-4fd4-a993-00f96ec5a95a"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[REPORTE DE SUPERVISIÓN (AREA: ATENCION INTEGRAL)]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="125" splitType="Stretch">
+			<staticText>
+				<reportElement x="7" y="5" width="130" height="15" uuid="045fa3f2-808b-497b-af8d-55511d523df0"/>
+				<text><![CDATA[AREA SUPERVISADA]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="109" y="20" width="21" height="20" uuid="74d50cb7-fa62-4599-8e78-7bcb331f59de"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="215" y="20" width="73" height="20" uuid="bd32010f-ac21-49c5-beef-7f994c123668"/>
+				<text><![CDATA[PAQUETE 3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="318" y="20" width="38" height="20" uuid="407b7192-f5eb-490b-9efc-1978e5670299"/>
+				<text><![CDATA[TB/VIH]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="194" y="20" width="21" height="20" uuid="a30714c5-a288-4fe4-8255-f150234a4b52"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="297" y="20" width="21" height="20" uuid="6b42b391-8507-425c-bd44-d9462a85f208"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="379" y="20" width="21" height="20" uuid="fc3fde52-8e08-4d83-b637-51d2ff97c72d"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="109" y="48" width="21" height="20" uuid="619df682-7324-419b-ad4e-61cc401662b2"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="-51" y="28" width="21" height="20" uuid="4f0f3271-e10a-4d63-931e-52f1579e3be4"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="400" y="20" width="67" height="20" uuid="66c734d7-2000-4b4e-97f6-8453995053a1"/>
+				<text><![CDATA[PROMOCION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="20" width="57" height="20" uuid="33aafd06-dedb-4862-a94c-4a800b4c196f"/>
+				<text><![CDATA[SISTEMAS]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="194" y="48" width="21" height="20" uuid="300689e3-bbe8-47e4-bd38-6edad625ec4e"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="297" y="48" width="21" height="20" uuid="e8e1400b-fdff-4864-a74b-12d712b9022a"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="411" y="48" width="21" height="20" uuid="d4bc9287-b1f9-4141-acd8-3b3fbec6db16"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="130" y="48" width="57" height="20" uuid="994a3972-5ead-44cb-9a4a-ce0e89a24148"/>
+				<text><![CDATA[PAQ. 1 Y 2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="79" width="100" height="20" uuid="a94fdda8-52a1-4faa-ab86-1cec625c54f0"/>
+				<text><![CDATA[OTRA AREA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="435" y="48" width="100" height="20" uuid="c2101504-5faf-419b-87b1-cc299664ec1c"/>
+				<text><![CDATA[SALUD MENTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="318" y="48" width="93" height="20" uuid="c25e39de-1df4-4862-93c7-8fe987e88be1"/>
+				<text><![CDATA[ADOLESCENTES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="218" y="48" width="57" height="20" uuid="fd176c42-aace-4032-9945-2be8558e7dc7"/>
+				<text><![CDATA[PAQ 4 Y 5]]></text>
+			</staticText>
+			<line>
+				<reportElement x="92" y="99" width="450" height="1" uuid="fbc7d40a-3115-464b-8563-1929318fb19c"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="55" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="10" width="555" height="32" backcolor="#CCCCCC" uuid="29a6740c-1473-41d9-9a69-2cec8a0b1193"/>
+				<textElement textAlignment="Center">
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE ACTIVIDADES]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="434" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="134" splitType="Stretch">
+			<line>
+				<reportElement x="36" y="44" width="145" height="1" uuid="d4e4c660-d438-4cad-ae26-0f2cbe056efb"/>
+			</line>
+			<staticText>
+				<reportElement x="32" y="50" width="144" height="47" uuid="02d19f37-0b23-4990-abb2-5144fce4e21c"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[NOMBRE Y FIRMA DE 
+QUIEN REALIZA SUPERVISION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="618" y="-240" width="144" height="47" uuid="84f837ec-6892-4908-b0ab-63b18f2a592c"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="379" y="50" width="144" height="47" uuid="d5af6c41-4f0b-4823-b1b9-94163215425a"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[NOMBRE Y FIRMA
+V.O.B.O.]]></text>
+			</staticText>
+			<line>
+				<reportElement x="356" y="47" width="189" height="1" uuid="980bae4d-d5c7-48b2-a9e1-e70850122ec9"/>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="9" y="12" width="536" height="20" uuid="35daa897-5c5c-4d04-a0ca-d85d34f0c304"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Sistema para Supervisiones a Unidades de Salud]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
