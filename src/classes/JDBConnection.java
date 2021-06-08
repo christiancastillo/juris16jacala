@@ -15,12 +15,14 @@ import java.sql.Statement;
  * @author INVENTARIOS
  */
 public class JDBConnection {
-    public JDBConnection(){}
+    public JDBConnection(){
+    }
     
     public static void openConnection() throws Exception{
-//        Class.forName("org.sqlite.JDBC");
+//        Class.forName("org.sqlite.JDBC");        
         Connection conn = DriverManager.getConnection("jdbc:sqlite:test.db");        
         Statement st = conn.createStatement();
+        String url = "jdbc:sqlite:C:/db/dat.db";
         // st.execute("") //
     }
     //CLASE PARA SQL LITE
