@@ -5,10 +5,12 @@
  */
 package classes;
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,14 +18,60 @@ import java.sql.Statement;
  */
 public class JDBConnection {
     public JDBConnection(){
+        
     }
     
-    public static void openConnection() throws Exception{
-//        Class.forName("org.sqlite.JDBC");        
-        Connection conn = DriverManager.getConnection("jdbc:sqlite:test.db");        
-        Statement st = conn.createStatement();
-        String url = "jdbc:sqlite:C:/db/dat.db";
+    /*
+    Nota: Descargar version x86 del JDK
+    */
+    
+    private static Connection conn = null;
+    private static Statement stat = null;
+    private static ResultSet rs = null;
+    
+    public static void openConnection(){             
+        try {
+            Class.forName("org.sqlite.JDBC");   
+            String url = "jdbc:sqlite:C:\\supervisionesssh\\db.db";
+            conn = DriverManager.getConnection(url);
+            
+            stat = conn.createStatement();            
+             DatabaseMetaData meta = conn.getMetaData();
+             JOptionPane.showMessageDialog(null, "Conexión exitosa");
+        } 
+        catch(Exception e){
+            System.out.println("Error: "+e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error: "+e.getMessage());
+        }       
         // st.execute("") //
+    }
+    
+    public static void closeConnection(){
+        try {
+            conn.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: "+e.getMessage());
+        }        
+    }
+    
+    // FUNCIONES PARA DMLs
+    public static void insertQuery(String SQLquery) {
+        try {
+            stat.executeQuery(SQLquery);
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error: "+e.getMessage());
+        }        
+   }
+    
+    public static void updateQuery(String query) {
+        Statement updStat = null;
+        try {
+            stat.executeUpdate(query);
+            conn.commit();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: "+e.getMessage());
+        }   
+        
     }
     //CLASE PARA SQL LITE
 }

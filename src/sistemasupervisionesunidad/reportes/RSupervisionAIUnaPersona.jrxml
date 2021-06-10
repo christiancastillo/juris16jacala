@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a8e648c0-0abd-47c5-84ef-a0cf80b35602">
 	<property name="ireport.zoom" value="0.9090909090909095"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="220"/>
+	<property name="ireport.y" value="333"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -148,9 +148,14 @@ V.O.B.O.]]></text>
 	<summary>
 		<band height="42" splitType="Stretch">
 			<staticText>
-				<reportElement x="9" y="12" width="536" height="20" uuid="35daa897-5c5c-4d04-a0ca-d85d34f0c304"/>
+				<reportElement x="9" y="3" width="536" height="20" uuid="35daa897-5c5c-4d04-a0ca-d85d34f0c304"/>
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[Sistema para Supervisiones a Unidades de Salud]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="19" width="536" height="20" uuid="320aedbe-47c6-477f-b6ce-4e91589b4ea8"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Jurisdiccion Sanitaria Jacala - Departamento de Informática]]></text>
 			</staticText>
 		</band>
 	</summary>

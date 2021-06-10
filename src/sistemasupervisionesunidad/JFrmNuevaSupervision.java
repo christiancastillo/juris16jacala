@@ -6,7 +6,10 @@
 package sistemasupervisionesunidad;
 
 import java.awt.Scrollbar;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
+import classes.JDBConnection;
+import java.util.Date;
 
 
 /**
@@ -16,9 +19,18 @@ import javax.swing.JOptionPane;
 public class JFrmNuevaSupervision extends javax.swing.JFrame {
     /**
      * Creates new form JFrmNuevaSupervision
-     */
+     */    
     public JFrmNuevaSupervision() {
         initComponents();
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+        dpFechaSupervision.setFormats(formatoFecha);
+        txtPersona1.setEnabled(true);               
+        txtPersona2.setEnabled(false);
+        txtPersona3.setEnabled(false);
+        txtPersona4.setEnabled(false);
+        txtPersona5.setEnabled(false);
+        txtPersona6.setEnabled(false);
+        fillComboBoxWithNoValue(5);
         //abrir coneccion a SQLite
     }
 
@@ -48,9 +60,9 @@ public class JFrmNuevaSupervision extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtUnidad = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbNumPersonas = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cbDepartamento = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -67,6 +79,7 @@ public class JFrmNuevaSupervision extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -104,16 +117,21 @@ public class JFrmNuevaSupervision extends javax.swing.JFrame {
 
         jLabel7.setText("Número de personas que acuden a la supervisión");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 PERSONA", "2 PERSONAS", "3 PERSONAS", "4 PERSONAS", "5 PERSONAS", "6 PERSONAS" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        cbNumPersonas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 PERSONA", "2 PERSONAS", "3 PERSONAS", "4 PERSONAS", "5 PERSONAS", "6 PERSONAS" }));
+        cbNumPersonas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                cbNumPersonasActionPerformed(evt);
             }
         });
 
         jLabel8.setText("Departamento");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ATENCION INTEGRAL", "EPIDEMIOLOGIA", "ADMINISTRACION", "MIXTOS" }));
+        cbDepartamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ATENCION INTEGRAL", "EPIDEMIOLOGIA", "ADMINISTRACION", "MIXTOS" }));
+        cbDepartamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbDepartamentoActionPerformed(evt);
+            }
+        });
 
         jLabel9.setText("Persona 1");
 
@@ -129,6 +147,11 @@ public class JFrmNuevaSupervision extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton2.setText("Salir");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setText("Generar reporte de supervisión y guardar");
@@ -177,12 +200,12 @@ public class JFrmNuevaSupervision extends javax.swing.JFrame {
                             .addGroup(jContenedorLayout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox1, 0, 147, Short.MAX_VALUE))
+                                .addComponent(cbNumPersonas, 0, 147, Short.MAX_VALUE))
                             .addGroup(jContenedorLayout.createSequentialGroup()
                                 .addGap(77, 77, 77)
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(cbDepartamento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jContenedorLayout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -212,7 +235,7 @@ public class JFrmNuevaSupervision extends javax.swing.JFrame {
         jContenedorLayout.setVerticalGroup(
             jContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jContenedorLayout.createSequentialGroup()
-                .addGap(58, 58, 58)
+                .addContainerGap()
                 .addGroup(jContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(dpFechaSupervision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -235,11 +258,11 @@ public class JFrmNuevaSupervision extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbNumPersonas, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -280,31 +303,80 @@ public class JFrmNuevaSupervision extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 652, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void fillComboBoxWithNoValue(int cantidad){
+        switch (cantidad) {
+            case 6:
+                txtPersona1.setText("");
+                txtPersona2.setText("");
+                txtPersona3.setText("");
+                txtPersona4.setText("");
+                txtPersona5.setText("");
+                txtPersona6.setText("");                
+                break;
+            case 5: //cinco personas
+                txtPersona2.setText("--");
+                txtPersona3.setText("--");
+                txtPersona4.setText("--");
+                txtPersona5.setText("--");
+                txtPersona6.setText("--");
+                break;
+            case 4:
+                txtPersona2.setText("");
+                txtPersona3.setText("--");
+                txtPersona4.setText("--");
+                txtPersona5.setText("--");
+                txtPersona6.setText("--");
+                break;
+            case 3: 
+                txtPersona2.setText("");
+                txtPersona3.setText("");                
+                txtPersona4.setText("--");
+                txtPersona5.setText("--");
+                txtPersona6.setText("--");                
+                break;
+            case 2:
+                txtPersona2.setText("");
+                txtPersona3.setText("");                
+                txtPersona4.setText("");                
+                txtPersona5.setText("--");
+                txtPersona6.setText("--");                   
+                break;
+            case 1:
+                txtPersona2.setText("");
+                txtPersona3.setText("");                
+                txtPersona4.setText("");                
+                txtPersona5.setText("");                
+                txtPersona6.setText("--");                   
+                break;
+            default: break;
+        }
+    }
+    
+    private void cbNumPersonasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbNumPersonasActionPerformed
         // TODO add your handling code here:
-        String itemCb = String.valueOf(jComboBox1.getSelectedItem());
-        switch (jComboBox1.getSelectedIndex()) {
+        //String itemCb = String.valueOf(jComboBox1.getSelectedItem());
+        switch (cbNumPersonas.getSelectedIndex()) {
             case 0:
                 //una
+                fillComboBoxWithNoValue(5);
                 txtPersona1.setEnabled(true);               
                 txtPersona2.setEnabled(false);
                 txtPersona3.setEnabled(false);
@@ -314,6 +386,7 @@ public class JFrmNuevaSupervision extends javax.swing.JFrame {
                 break;
             case 1:
                 //dos
+                fillComboBoxWithNoValue(4);
                 txtPersona1.setEnabled(true);
                 txtPersona2.setEnabled(true);
                 txtPersona3.setEnabled(false);
@@ -323,6 +396,7 @@ public class JFrmNuevaSupervision extends javax.swing.JFrame {
                 break;
             case 2:
                 //tres
+                fillComboBoxWithNoValue(3);
                 txtPersona1.setEnabled(true);
                 txtPersona2.setEnabled(true);
                 txtPersona3.setEnabled(true);              
@@ -332,6 +406,7 @@ public class JFrmNuevaSupervision extends javax.swing.JFrame {
                 break;
             case 3:
                 //cuatro
+                fillComboBoxWithNoValue(2);
                 txtPersona1.setEnabled(true);
                 txtPersona2.setEnabled(true);
                 txtPersona3.setEnabled(true);
@@ -341,6 +416,7 @@ public class JFrmNuevaSupervision extends javax.swing.JFrame {
                 break;
             case 4:
                 //cinco
+                fillComboBoxWithNoValue(1);
                 txtPersona1.setEnabled(true);
                 txtPersona2.setEnabled(true);
                 txtPersona3.setEnabled(true);
@@ -350,6 +426,7 @@ public class JFrmNuevaSupervision extends javax.swing.JFrame {
                 break;
             case 5:
                 //seis
+                fillComboBoxWithNoValue(6);
                 txtPersona1.setEnabled(true);
                 txtPersona2.setEnabled(true);
                 txtPersona3.setEnabled(true);
@@ -361,17 +438,48 @@ public class JFrmNuevaSupervision extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null,"Prueba de mensaje");
                 break;
         }
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_cbNumPersonasActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String fechaDMY = sdf.format(dpFechaSupervision.getDate());
+        try {            
+            JOptionPane.showMessageDialog(null, fechaDMY);
+            JDBConnection.openConnection();
+            JDBConnection.insertQuery("INSERT INTO supervision (fecha_super, clues_unidad, desc_activ, nombre_unidad, motivo_superv,num_personas, persona_uno, persona_dos, persona_tres, persona_cuatro, persona_cinco, persona_seis) VALUES ("+fechaDMY+","
+            +txtCLUES.getText()+","
+            +txtActividadesSup.getText()+","
+            +txtUnidad.getText()+","
+            +txtMotivoSupervision.getText()+","            
+            +cbNumPersonas.getSelectedItem()+","
+            +txtPersona1.getText()+","
+            +txtPersona2.getText()+","
+            +txtPersona3.getText()+","
+            +txtPersona4.getText()+","
+            +txtPersona5.getText()+","
+            +txtPersona6.getText()+");");
+            JOptionPane.showMessageDialog(null, "INSERT INTO supervision (fecha_super, clues_unidad, desc_activ, nombre_unidad, motivo_superv,num_personas, persona_uno, persona_dos, persona_tres, persona_cuatro, persona_cinco, persona_seis) VALUES ("+fechaDMY+","+txtCLUES.getText()+","+txtActividadesSup.getText()+","+txtUnidad.getText()+","+txtMotivoSupervision.getText()+","+cbNumPersonas.getSelectedItem()+","+txtPersona1.getText()+","+txtPersona2.getText()+","+txtPersona3.getText()+","+txtPersona4.getText()+","+txtPersona5.getText()+","+txtPersona6.getText()+");");
+            JDBConnection.closeConnection();
+        } catch(Exception e) {
+            System.out.println("Error: "+e.getMessage());
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void dpFechaSupervisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpFechaSupervisionActionPerformed
         // TODO add your handling code here:
         //cambiar el formato de fecha a DD/mm/YYYY
-        dpFechaSupervision.getDate();
     }//GEN-LAST:event_dpFechaSupervisionActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void cbDepartamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDepartamentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbDepartamentoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -409,12 +517,12 @@ public class JFrmNuevaSupervision extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cbDepartamento;
+    private javax.swing.JComboBox<String> cbNumPersonas;
     private org.jdesktop.swingx.painter.CompoundPainter compoundPainter1;
     private org.jdesktop.swingx.JXDatePicker dpFechaSupervision;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JPanel jContenedor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
