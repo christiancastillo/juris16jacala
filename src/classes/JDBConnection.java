@@ -55,9 +55,37 @@ public class JDBConnection {
     }
     
     // FUNCIONES PARA DMLs
-    public static void insertQuery(String SQLquery) {
+    public static void insertQuery(String SQLquery, int numberOfParameters) {
+        PreparedStatement prepStat = null;
         try {
-            stat.executeQuery(SQLquery);
+            //stat.executeQuery(SQLquery);
+            switch(numberOfParameters) {
+                case 1:
+                    prepStat = conn.prepareStatement(SQLquery);
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    break;
+                case 7:
+                    break;
+                case 8:
+                    break;
+                case 9:
+                    break;
+                case 10:
+                    break;
+                default:
+                    break;
+            }
+            /*prepStat.executeUpdate();   
+            closeConnection();*/
         } catch(Exception e){
             JOptionPane.showMessageDialog(null, "Error: "+e.getMessage());
         }        
@@ -68,6 +96,7 @@ public class JDBConnection {
         try {
             stat.executeUpdate(query);
             conn.commit();
+            closeConnection();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error: "+e.getMessage());
         }   
