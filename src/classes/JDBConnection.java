@@ -55,39 +55,28 @@ public class JDBConnection {
     }
     
     // FUNCIONES PARA DMLs
-    public static void insertQuery(String SQLquery, int numberOfParameters) {
+    public static void insertQuery(String fechaSupervision, String cluesUnidad, String descActiv, String nombreUnidad, String motivoSuperv, String numPersonas, String personaUno, String personaDos, String personaTres, String personaCuatro, String personaCinco, String personaSeis, int deptId) {
         PreparedStatement prepStat = null;
         try {
             //stat.executeQuery(SQLquery);
-            switch(numberOfParameters) {
-                case 1:
-                    prepStat = conn.prepareStatement(SQLquery);
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    break;
-                case 5:
-                    break;
-                case 6:
-                    break;
-                case 7:
-                    break;
-                case 8:
-                    break;
-                case 9:
-                    break;
-                case 10:
-                    break;
-                default:
-                    break;
-            }
-            /*prepStat.executeUpdate();   
-            closeConnection();*/
+            //fecha_super, clues_unidad, desc_activ, nombre_unidad, motivo_superv,num_personas, persona_uno, persona_dos, persona_tres, persona_cuatro, persona_cinco, persona_seis
+                    prepStat = conn.prepareStatement("INSERT INTO supervision (fecha_super, clues_unidad, desc_activ, nombre_unidad, motivo_superv,num_personas, persona_uno, persona_dos, persona_tres, persona_cuatro, persona_cinco, persona_seis, id_departamento) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);");
+                    prepStat.setString(1, fechaSupervision);
+                    prepStat.setString(2, cluesUnidad);
+                    prepStat.setString(3,descActiv);
+                    prepStat.setString(4, nombreUnidad);
+                    prepStat.setString(5, motivoSuperv);
+                    prepStat.setString(6, numPersonas);
+                    prepStat.setString(7, personaUno);
+                    prepStat.setString(8, personaDos);
+                    prepStat.setString(9, personaTres);
+                    prepStat.setString(10, personaCuatro);
+                    prepStat.setString(11, personaCinco);
+                    prepStat.setString(12, personaSeis);
+                    prepStat.setInt(13, deptId);
+                    prepStat.executeUpdate();   
         } catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Error: "+e.getMessage());
+            JOptionPane.showMessageDialog(null,"Error: " +e.getMessage() + "\n Causas: "+e.getCause());
         }        
    }
     

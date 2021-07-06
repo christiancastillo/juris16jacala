@@ -324,12 +324,12 @@ public class JFrmNuevaSupervision extends javax.swing.JFrame {
     private void fillComboBoxWithNoValue(int cantidad){
         switch (cantidad) {
             case 6:
-                txtPersona1.setText("");
-                txtPersona2.setText("");
-                txtPersona3.setText("");
-                txtPersona4.setText("");
-                txtPersona5.setText("");
-                txtPersona6.setText("");                
+                txtPersona1.setText(String.valueOf(""));
+                txtPersona2.setText(String.valueOf(""));
+                txtPersona3.setText(String.valueOf(""));
+                txtPersona4.setText(String.valueOf(""));
+                txtPersona5.setText(String.valueOf(""));
+                txtPersona6.setText(String.valueOf(""));                
                 break;
             case 5: //cinco personas
                 txtPersona2.setText("--");
@@ -366,6 +366,19 @@ public class JFrmNuevaSupervision extends javax.swing.JFrame {
                 txtPersona5.setText("");                
                 txtPersona6.setText("--");                   
                 break;
+            default: break;
+        }
+    }
+    
+    private void generarReporteNumPersonas(int numeroPersonas) {
+        switch(numeroPersonas){
+            //de acuerdo al numero de personas, entrar al case corrspondiente para generar el reporte
+            case 1:break;
+            case 2:break;
+            case 3:break;
+            case 4: break;
+            case 5: break;
+            case 6: break;
             default: break;
         }
     }
@@ -444,25 +457,16 @@ public class JFrmNuevaSupervision extends javax.swing.JFrame {
         // TODO add your handling code here:
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         String fechaDMY = sdf.format(dpFechaSupervision.getDate());
+        int idDepartamento = 0;
+        
         try {            
-            JOptionPane.showMessageDialog(null, fechaDMY);
+            idDepartamento = cbDepartamento.getSelectedIndex()+1;
+            JOptionPane.showMessageDialog(null, String.valueOf(idDepartamento+1));
             JDBConnection.openConnection();
-            JDBConnection.insertQuery("INSERT INTO supervision (fecha_super, clues_unidad, desc_activ, nombre_unidad, motivo_superv,num_personas, persona_uno, persona_dos, persona_tres, persona_cuatro, persona_cinco, persona_seis) VALUES ("
-            +fechaDMY+","
-            +txtCLUES.getText()+","
-            +txtActividadesSup.getText()+","
-            +txtUnidad.getText()+","
-            +txtMotivoSupervision.getText()+","            
-            +cbNumPersonas.getSelectedItem()+","
-            +txtPersona1.getText()+","
-            +txtPersona2.getText()+","
-            +txtPersona3.getText()+","
-            +txtPersona4.getText()+","
-            +txtPersona5.getText()+","
-            +txtPersona6.getText()+");");
+            JDBConnection.insertQuery(fechaDMY, txtCLUES.getText(),txtActividadesSup.getText(),txtUnidad.getText(),txtMotivoSupervision.getText(), String.valueOf(cbNumPersonas.getSelectedItem()),txtPersona1.getText(),txtPersona2.getText(),txtPersona3.getText(),txtPersona4.getText(),txtPersona5.getText(),txtPersona6.getText(),idDepartamento);
             JDBConnection.closeConnection();
         } catch(Exception e) {
-            System.out.println("Error: "+e.getMessage());
+            JOptionPane.showMessageDialog(null,"Error: " +e.getMessage() + "\n Causas: "+e.getCause());
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
